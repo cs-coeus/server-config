@@ -15,7 +15,7 @@ services:
             - "5002:5000"
 
     qa-model-api:
-        image: keiseithunder/coeus-qa-api:0.1.3
+        image: keiseithunder/coeus-qa-api:0.1.4
         container_name: qa-model-api
         restart: unless-stopped
         ports:
