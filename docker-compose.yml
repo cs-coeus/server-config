@@ -1,28 +1,28 @@
 version: '3'
 services:
     summarizer-model-api:
-        image: keiseithunder/coeus-summarizer-api:0.1.2
+        image: keiseithunder/coeus-summarizer-api:0.1.3
         container_name: summarizer-model-api
         restart: unless-stopped
         ports:
             - "5001:5000"
 
     spacy-model-api:
-        image: keiseithunder/coeus-spacy-api:0.1.5
+        image: keiseithunder/coeus-spacy-api:0.1.6
         container_name: spacy-model-api
         restart: unless-stopped
         ports:
             - "5002:5000"
 
     qa-model-api:
-        image: keiseithunder/coeus-qa-api:0.1.2
+        image: keiseithunder/coeus-qa-api:0.1.3
         container_name: qa-model-api
         restart: unless-stopped
         ports:
             - "5003:5000"
 
     clustering-model-api:
-        image: keiseithunder/coeus-clustering-api:0.1.4
+        image: keiseithunder/coeus-clustering-api:0.1.5
         container_name: clustering-model-api
         restart: unless-stopped
         ports:
