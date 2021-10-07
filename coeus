@@ -1,0 +1,72 @@
+upstream summarizer_model {
+    server localhost:5001;
+}
+
+upstream spacy_model {
+    server localhost:5002;
+}
+
+upstream qa_model {
+    server localhost:5003;
+}
+
+upstream clustering_model {
+    server localhost:5004;
+}
+
+server {
+  listen 80;
+  server_name _;
+
+   location /api/model/summarizer/ {
+	proxy_read_timeout 1200;
+   	proxy_connect_timeout 1200;
+   	proxy_send_timeout 1200;
+        proxy_pass http://summarizer_model/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   }
+
+   location /api/model/spacy/ {
+        proxy_read_timeout 1200;
+        proxy_connect_timeout 1200;
+        proxy_send_timeout 1200;
+        proxy_pass http://spacy_model/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   }
+
+   location /api/model/qa/ {
+        proxy_read_timeout 1200;
+        proxy_connect_timeout 1200;
+        proxy_send_timeout 1200;
+        proxy_pass http://qa_model/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   }
+
+   location /api/model/clustering/ {
+        proxy_read_timeout 1200;
+        proxy_connect_timeout 1200;
+        proxy_send_timeout 1200;
+        proxy_pass http://clustering_model/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   }
+}
