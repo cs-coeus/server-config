@@ -8,7 +8,7 @@ services:
             - "5001:5000"
 
     spacy-model-api:
-        image: keiseithunder/coeus-spacy-api:0.1.6
+        image: keiseithunder/coeus-spacy-api:0.1.7
         container_name: spacy-model-api
         restart: unless-stopped
         ports:
@@ -28,4 +28,14 @@ services:
         ports:
             - "5004:5000"
 
-            
+    coeus-main-api:
+        image: keiseithunder/coeus-main-api:0.1.0
+        container_name: coeus-main-api
+        restart: unless-stopped
+        ports:
+            - "5000:5000"
+        depends_on:
+            - summarizer-model-api
+            - spacy-model-api
+            - qa-model-api
+            - clustering-model-api
