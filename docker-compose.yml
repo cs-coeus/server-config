@@ -29,7 +29,7 @@ services:
             - "5004:5000"
 
     coeus-main-api:
-        image: keiseithunder/coeus-main-api:0.1.1
+        image: keiseithunder/coeus-main-api:0.1.2
         container_name: coeus-main-api
         restart: unless-stopped
         ports:
