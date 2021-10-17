@@ -22,14 +22,21 @@ services:
             - "5003:5000"
 
     clustering-model-api:
-        image: keiseithunder/coeus-clustering-api:0.1.5
+        image: keiseithunder/coeus-clustering-api:0.1.7
         container_name: clustering-model-api
         restart: unless-stopped
         ports:
             - "5004:5000"
 
+    gensim-model-api:
+        image: keiseithunder/coeus-gensim-api:0.1.0
+        container_name: gensim-model-api
+        restart: unless-stopped
+        ports:
+            - "5005:5000"
+
     coeus-main-api:
-        image: keiseithunder/coeus-main-api:0.1.5
+        image: keiseithunder/coeus-main-api:0.1.12
         container_name: coeus-main-api
         restart: unless-stopped
         ports:
@@ -39,3 +46,4 @@ services:
             - spacy-model-api
             - qa-model-api
             - clustering-model-api
+            - gensim-model-api
