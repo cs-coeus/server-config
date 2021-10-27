@@ -35,6 +35,13 @@ services:
         ports:
             - "5005:5000"
 
+    apache-tika:
+        image: apache/tika
+        container_name: apache-tika
+        restart: unless-stopped
+        ports:
+            - "9998:9998"
+
     coeus-main-api:
         image: keiseithunder/coeus-main-api:0.1.12
         container_name: coeus-main-api
@@ -47,3 +54,4 @@ services:
             - qa-model-api
             - clustering-model-api
             - gensim-model-api
+            - apache-tika
