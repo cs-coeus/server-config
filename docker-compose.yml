@@ -43,7 +43,7 @@ services:
             - "9998:9998"
 
     coeus-main-api:
-        image: keiseithunder/coeus-main-api:0.1.12
+        image: keiseithunder/coeus-main-api:0.1.13
         container_name: coeus-main-api
         restart: unless-stopped
         ports:
