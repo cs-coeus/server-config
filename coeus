@@ -26,6 +26,10 @@ upstream apache_tika {
     server localhost:9998;
 }
 
+upstream coeus_frontend {
+    server localhost:8080;
+}
+
 server {
   listen 80;
   server_name _;
@@ -117,6 +121,19 @@ server {
         proxy_connect_timeout 1200;
         proxy_send_timeout 1200;
         proxy_pass http://coeus_main_api/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   }
+
+   location / {
+        proxy_read_timeout 1200;
+        proxy_connect_timeout 1200;
+        proxy_send_timeout 1200;
+        proxy_pass http://coeus_frontend/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
