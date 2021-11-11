@@ -25,7 +25,8 @@ sudo apt-get install \
     ca-certificates \
     curl \
     gnupg \
-    lsb-release
+    lsb-release \
+    git
 ```
 ```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -72,8 +73,13 @@ sudo ufw allow 'Nginx Full'
 
 3.3. write [config](https://github.com/cs-coeus/server-config)
 ```bash
-sudo vi /etc/nginx/sites-available/coeus
+git clone https://github.com/cs-coeus/server-config.git
 ```
+
+```bash
+sudo cp server-config/coeus /etc/nginx/sites-available/coeus
+```
+
 copy config from coeus file from the link above
 
 3.4. link config to sites-enable
@@ -87,24 +93,19 @@ sudo rm /etc/nginx/sites-available/default
 sudo rm /etc/nginx/sites-enabled/default
 ```
 
-3.6. restart nginx
-```bash
-sudo systemctl restart nginx
-```
 
 ### 4. deploy docker container using [compose](https://github.com/cs-coeus/server-config/blob/main/docker-compose.yml)
-4.1. setup directory
+4.1. change directory
 ```bash
-mkdir deployment
-cd deployment
+cd server-config
 ```
-4.2. create compose file in vm
-```bash
-vi docker-compose.yml
-```
-copy the content from the link above to the file
-
-4.3. deploy
+4.2. deploy
 ```bash
 sudo docker-compose up -d
+```
+
+### 5. start nginx service
+5.1. restart nginx
+```bash
+sudo systemctl restart nginx
 ```
