@@ -3,7 +3,7 @@ Config files for server
 
 ## Deployment step
 
-### 0. shh to the machine
+### 0. SSH to the machine
 ```bash
 ssh coeusadmin@coeus.sit.kmutt.ac.th
 ```
